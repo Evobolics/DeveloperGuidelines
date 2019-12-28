@@ -227,10 +227,7 @@ This company primarily targets SQL Server databases, but this will not always be
 ## Performing Conversions
 
 When converting data types, do not assume the input is of the type expected.  Always use the `Try` version of the convert method and setup your code to handle unexpected input values with default values.
-
-## Volatile Keyword
-
-If you are writing new code targeting the .NET 2.0 runtime or greater, [do not use it](https://blogs.msdn.microsoft.com/ericlippert/2011/06/16/atomicity-volatility-and-immutability-are-different-part-three/).  If you really feel that you need to, think again, read the above article, and if you still think you do, discuss it with the team first.  There really is no need for it for the systems being built by developers.  
+ 
 
 ## Cost of Change is More Important than Encapsulation
 
@@ -240,9 +237,21 @@ The costiest thing in a development shop is the programmers time; thus it very i
 
 ## CSharp
 
+### Volatile Keyword
+
+If you are writing new code targeting the .NET 2.0 runtime or greater, [do not use it](https://blogs.msdn.microsoft.com/ericlippert/2011/06/16/atomicity-volatility-and-immutability-are-different-part-three/).  If you really feel that you need to, think again, read the above article, and if you still think you do, discuss it with the team first.  There really is no need for it for the systems being built by developers. 
+
 ## VB Dot NET
 
 This Company does have VB Dot Net projects and thus a few words of wisdom are needed for anyone that is working on these projects.  First, [Option Explicit](http://vb.net-informations.com/language/vb.net_option_explicit.htm) should be turned ON; no exceptions.  Second, set [Option Strict](http://vb.net-informations.com/language/vb.net_option_strict.htm) to ON. Last, no project should have a reference to Visual Basic, as the functions have been proven to be over a thousand times slower than using their .NET counterparts.
+
+# DevOps
+
+This section of the guide will go over guiding principals of Development Operations, which is often abbreviated DevOps.
+
+DevOps maximizes the return on investment (ROI) and drastically lowers the total cost of ownership of developing and running a software platform.  
+
+Get rid of redundant work. 
 
 # Repository Setup
 

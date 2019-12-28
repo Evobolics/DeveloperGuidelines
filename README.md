@@ -31,6 +31,80 @@ Although adopting these naming conventions as general code development guideline
 |Before diving in, please keep in mind that the most important thing about naming is not to be afraid to just pick something and get moving.  Please do not waste hours trying to think of a perfect name.  It is almost always possible to come back later and change a name during the code review process.  With that said, do put a few seconds to a few minutes of thought into any names picked as they may last a while.  Last, please watch the spelling of names as misspellings have a way of lasting years in a system. |
 |--|
 
+## Names of Assemblies and DLLs
+
+An assembly is the unit of deployment and identity for managed code programs. Although assemblies can span one or more files, typically an assembly maps one-to-one with a DLL. Therefore, this section describes only DLL naming conventions, which then can be mapped to assembly naming conventions.
+
+✓ DO choose names for your assembly DLLs that suggest large chunks of functionality, such as `MyCompany.MajorSystem`
+
+**NOTE: Assembly and DLL names don’t have to correspond to namespace names.**  
+
+In traditional .NET the assembly name is the common portion of the namespaces used the library and it makes it simple to come up with a assembly and namespace pattern.  In practice though, linking the two together can cause issues for code portability.  When working with multiple systems, it is important to write code that can be transferred and referenced between systems without having to refactor namespaces.  
+
+✓ CONSIDER naming DLLs according to the following pattern:
+
+<Company>.<Component>.dll
+
+where <Component> contains one or more dot-separated clauses. 
+
+For example: CN.Controls.dll.
+
+## Organize Your Solutions
+
+Organize the projects in your solution using solution folders to aide readability.  Use numbers: 1, 2, 3 or 01, 02, 03 (for solutions with more than ten projects) to put your project in order. Infrastructure projects should be at the top, and examples should be at the bottom.  Each folder should be a natural layer in your solution with each one building on top of the previous one.
+
+## Project Names
+
+Project should named [Company].[Project].[Subsystem].  
+
+Project names can have the words like Core, Base, and Abstractions in them.  Namespaces should not.
+
+After you have created a project, the default namespace should be set to `CompanyName` or an abbreviation. 
+
+## Namespace Names and Folder Structure
+
+### Do not use Nouns
+
+Namespaces should be plural nouns, adjectives, verbs, and adverbs.  Do not use singular nouns in folder names as they will be transformed into namespace names and cause conflicts with classes that use the same singular noun names. 
+
+### Use the Shortest Name Possible
+
+Namespaces have to be written often and their names need to be simple and to the point.  When considering how to name something and there are two possible words for the same concept, use the shortest of the two.  For example, assume a Common / Infrastructure / Core namespace was needed to contain some classes that can be reused.  The later namespace name `Core` should be used over the longer `Common` and `Infrastructure` names if possible. 
+
+### Abbreviate Common Names that are Used Often
+
+Namespace names that are common and used throughout the source code should be abbreviated, especially if they are not going to be made public.  For instance, most of our libraries are not going to be shared with outside parties, and thus it is possible to abbreviate `CompanyName` by just typing `CN`.  Ideally, the team should look for a root namespace name that is eight characters or less.  Now a coder just has to type in two characters to access the root namespace each time instead of typing eleven.  If the library was going to be used externally, then the root namespace of `CompanyName` should be considered for marketing reasons.  
+
+### Pick Names that Minimizes Change
+
+Pick a namespace naming strategy that minimizes the amount of change long term.  The costliest thing in a software development shop is development / testing time.  
+
+### Go from Broad and Fixed to Narrow and Dynamic
+
+Namespaces should start with broad and fixed terms and then proceed to become more narrow and dynamic in nature.  For example the first namespace should often be the companies name, or another common aggregator.  The next level should be names like `Models`, `Services`, `Enums`.  These again are names that do not change often, and provide structure to the code.  More on this on the next section.  
+
+### Use Type Specificity
+
+Traditionally in the past, namespaces start with a company name and then are followed up with a technology and features names.  This is good for separating business concepts, but it does little to explain or encourage a clean design.  Thus, in addition to including the company name in the namespace, the type of the component should be included the namespace path name.  For instance, `CN.Models.Tickets`.  This namespace says the software came from Company Name (CN), and contains models that are Tickets specific.  `Models` is put BEFORE `Tickets` because it is broader in nature than `Tickets` and can be used for more items.  
+
+The following is the common pattern that works well for most namespaces:
+
+`[Type].[Business Name].[Type].[Business Name]...[Type].[Business Name]`
+
+The first [Type] argument of global, Systems or Root is often implied or not needed so most namespaces first start with a business name like `CN` or `CompanyName`.
+
+Common type names that should be considered are:
+
+|**Namespace Type Name**| **Description / Use Case**  |
+|--|--|
+| Models  |  for business models |
+| Entities / DataModels  | for database level models  |
+| Services  | for business level services |
+| DataServices  |  for database level services  |
+| Exts  | should contain extension methods |
+| Enums  | should contain enumerations  |
+| Constants  | should contain constant declarations. |
+| EntryPoints  | for Program and Startup files, if not in the root directory |
 
 # Continuous Integration
 

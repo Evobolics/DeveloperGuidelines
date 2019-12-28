@@ -28,7 +28,7 @@ The goal of this section is to provide a consistent set of naming conventions th
 
 Although adopting these naming conventions as general code development guidelines would result in more consistent naming throughout your code, you are required only to apply them to APIs that are publicly exposed (public or protected types and members, and explicitly implemented interfaces).
 
-|**COMMENTARY:** Before diving in, please keep in mind that the most important thing about naming is not to be afraid to just pick something and get moving.  Please do not waste hours trying to think of a perfect name.  It is almost always possible to come back later and change a name during the code review process.  With that said, do put a few seconds to a few minutes of thought into any names picked as they may last a while.  Last, please watch the spelling of names as misspellings have a way of lasting years in a system. |
+|** Before diving in, please keep in mind that the most important thing about naming is not to be afraid to just pick something and get moving.  Please do not waste hours trying to think of a perfect name.  It is almost always possible to come back later and change a name during the code review process.  With that said, do put a few seconds to a few minutes of thought into any names picked as they may last a while.  Last, please watch the spelling of names as misspellings have a way of lasting years in a system. |
 |--|
 
 

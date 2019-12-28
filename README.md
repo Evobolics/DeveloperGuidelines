@@ -283,11 +283,15 @@ The goal is to provide valuable continous delivery to the organization.
 
 Without delivery, all the code that is checked in just stays checked in, is not deployed, and does the organization little.  
 
-Ideally organizations want to gain return on investment for any code written as soon as possible.
+Ideally organizations want to gain return on investment for any code written as soon as possible. The goal is to move away from release cycles.  As soon as a piece of code is ready for the user to use it 
 
 ## Moving Beyond Virtual Machines
 
 ## Setting up Azure App Services
+
+### Set up Deployment Slots
+
+#### Allow for Testing
 
 ## Managing Connection Strings
 

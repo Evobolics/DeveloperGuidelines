@@ -106,6 +106,144 @@ Common type names that should be considered are:
 | Constants  | should contain constant declarations. |
 | EntryPoints  | for Program and Startup files, if not in the root directory |
 
+### Try to Avoid Overly Nested Namespaces
+
+When coming up with namespaces, try to treat them as heading in a document: less is better.  It most cases, the number of namespaces in a path should not exceed three to four levels, unless the work is overly technical and requires a lot o branching.  Using this approach greatly aides in keeping the using statements at the top clean and to a point.  In addition, when creating micro-services, having these the namespaces short allows for clean compaction of namespaces.  For example, assume three services are needed that all perform Ticketing work.  Their assembly names would be `CN.Ticketing.A`, `CN.Ticketing.B` and `CN.Ticketing.C.`  But, all the libraries could declare and use a single `CN.Services.Ticketing` namespace that is used to house each libraries service, given care is given to not have any class name conflicts.  
+
+### Abstraction Libraries
+
+It is common practice to create abstraction libraries that contain interfaces that are going to be used by integration points, enumerations that are going to be used across projects, or just common code.  These libraries should end with the name Abstractions in the project / assembly name, but the name should not be present in the namespace name whenever possible.  The design of the libraries should be setup where the developer should only have to include the namespace without the word Abstractions in the using statement and the class names should not conflict.   
+
+# Coding Style Guides
+
+## Comments
+
+All classes, methods and properties need short comment on them that explain the purpose of the field.  It may be obvious to the developer who is writing the class what the purpose of the field is, but it will not always be obvious to the developers that come years later that have to support the code base.  Please take a few extra minutes to add comments as it will save developers that come later hours.  In addition, it will greatly increase the longevity of the code and decrease long term costs for the company.
+
+## Remove Unnecessary Using Statements
+
+Please remove all unnecessary using statements from your class files. 
+
+## Organize your Using Statements
+
+Using statements should remain organized and ordered to aide readability and maintainability.  
+
+# Design Pattern Guides
+
+## Model and Service Separation
+
+Traditional OOP allows for models and methods to be coupled together.  For instance, a telephone class could have a property called `CurrentTelephoneNumber` and `Dial()` method.  In theory, this can work well.  But in practice, the method Dial and the Telephone class should have different software life-cycles, and should be separated.  The Dial method should be contained in a service, and only a single instance of it should exist as a singleton.  The Telephone class on the other hand should be setup to be a transient, and multiple copies of it should be created.  In addition, by separating out the two concepts, it is now possible to change the `Dial()` method without causing any ripple affects to the data structure.  
+
+## Code a Class for a Purpose
+
+When writing a class, code it for a singular purpose.  The singular responsibility principal (SRP) states that a class should only have a single reason to change.  Traditional OOP lets this singular purpose include methods and properties in the same class.  OOP structured for rapid change and for dependency injection does not.  When coding classes, keep them setup for DI and set them up for success when working in a rapidly changing environment by keeping service code focused on services and models focused on being models.  This is accomplished by moving most methods to services, and leaving models with just properties.  The two major exception to this rule is when it is necessary to create class inheritance structures for models that need to wire up abstract members or when needing to create models that are enumerable.  
+
+# Source Code Branching Strategy
+
+```
+---> Master
+  ---> Feature
+    ---> User
+```
+
+# Agile Development
+
+## Story Estimation Guide
+
+A story points is equal to a combination of time, complexity, and risk.  
+
+`Story Points = Time + Complexity + Risk.`
+
+### Time Estimation
+
+The following table should be used as a guide when estimating a stories points.  
+
+| **Points** | **Description** |
+|--|--|
+| 01  |  Estimated it can be done in a half day (3 hours) |
+| 02 | Estimated it can be done in a day (6 hours) |
+| 03 | Estimated it can be done in one to two days (6-12 hours) |
+| 05 | Estimated it can be done in two to three days (12 to 18 hours)  |
+| 08 | Estimated it can be done in three to five days (18 to 30 hours) |
+| 13† | Estimated it can be done in five to eight days.  |
+| 20† | Estimated it can be done in under two weeks. |
+  
+|**† -** Whenever possible a story should not be estimated with this number of points.  When a story has this many points, it is hard for the team and management to see movement on the story and it puts the developer and team at more risk for the story not to be completed.  If the number of points is reach due to complexity or risk, the story should be evaluated to see if it can be broken down further.|
+|--|
+
+### Complexity Estimation
+
+| **Risk Level** | **Description** |
+|--|--|
+| Low | The story is of low complexity and only touches a single method or class.   No additional points should be added to the story.   |
+| Medium | The story touches a single system or a single library and multiple changes are being made within the library.   One to two points should be considered to be added to the story's size.   |
+| High | The story touches numerous libraries and/or systems.   Three or more points should be added to the stories size.|
+
+### Risk Estimation
+
+| **Risk Level** | **Description** |
+|--|--|
+| Low | The story is low risk and does not require much coordination between team members.  No additional points should be added to the story.   |
+| Medium | The story has some risk to it and some coordination is needed between the team members to accomplish the story.  One to two points should be considered to be added to the story's size.   |
+| High | The story has some considerable risk associated with it and a lot of coordination is needed between team members if the story is going to be completed within the sprint.  Three or more points should be added to the stories size.|
+
+# Solution Setup and Design
+
+## Folder Structure
+
+All solutions should contains the following folders:
+
+|**Folder Name**|**Description**  |
+|--|--|
+| src | Stores all source code for the solution.  |
+| doc | Stores all documentation related to the project |
+| lib | Stores all referenced assemblies that are not available from a nuget feed.  Libraries available on any nuget feed should not be checked into source control. |
+| build | Contain files related to the build.  e.g. *.yaml files|
+
+### The 'src' Folder
+
+The src folder should contain all the source code for the solution. 
+
+All solution files should be in the src directory and not in any project directories.  
+
+# Library Architecture and Design
+
+## Microservices and Micro Libraries
+
+As this guide will get into further, this company is against writing any new [monolithic](https://articles.microservices.com/monolithic-vs-microservices-architecture-5c4848858f59) apis going forward.  Instead, all new API libraries need to be setup to be micro services.  In addition, this company is against creating large libraries as they cause the need for everything including the kitchen sink to be included as libraries.
+
+# API Architecture
+
+## GRPC
+
+# Coding Practices
+
+## Keep Horizontal Scalability in Mind
+
+It is important to keep horizontal scalability in mind when creating systems.  No business logic should ever be placed in stored procedures or any database specific code.  In fact, triggers and stored procedures should be completely avoided.  
+
+## Design your Systems to be Database Agnostic
+
+This company primarily targets SQL Server databases, but this will not always be the case when the systems start moving to the cloud.  When writing new code it is important to keep this fact in mind and design all new systems to be database agnostic - do not write code that specifically targets a single database engine.  Any new code should be written where the data layer is modular; the only change that should be needed to consume a new data service is to replace what classes are swapped out  are injected in the IOC container.  This means that triggers and stored procedures should be avoided.
+
+## Performing Conversions
+
+When converting data types, do not assume the input is of the type expected.  Always use the `Try` version of the convert method and setup your code to handle unexpected input values with default values.
+
+## Volatile Keyword
+
+If you are writing new code targeting the .NET 2.0 runtime or greater, [do not use it](https://blogs.msdn.microsoft.com/ericlippert/2011/06/16/atomicity-volatility-and-immutability-are-different-part-three/).  If you really feel that you need to, think again, read the above article, and if you still think you do, discuss it with the team first.  There really is no need for it for the systems being built by developers.  
+
+## Cost of Change is More Important than Encapsulation
+
+The costiest thing in a development shop is the programmers time; thus it very important to make sure each day each developer spends their time wisely and keep the cost of changing code in mind.  Everytime a developer has to change code there is the potential for bugs to be re-introduced to a program and the software needs to go through 
+
+# Language Specific  Guides
+
+## VB Dot NET
+
+This Company does have VB Dot Net projects and thus a few words of wisdom are needed for anyone that is working on these projects.  First, [Option Explicit](http://vb.net-informations.com/language/vb.net_option_explicit.htm) should be turned ON; no exceptions.  Second, set [Option Strict](http://vb.net-informations.com/language/vb.net_option_strict.htm) to ON. Last, no project should have a reference to Visual Basic, as the functions have been proven to be over a thousand times slower than using their .NET counterparts.
+
 # Continuous Integration
 
 # Continuous Delivery

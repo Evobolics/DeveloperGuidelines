@@ -20,6 +20,18 @@ If anyone on a call is in the same building as another attendee, do not call ind
 
 Just because you can come to work wearing a shreded shirt, and pair of jeans with holes in them, and have your underwear showing, does not mean you should.  Dress for the job you want, not the job you have.
 
+# Naming Guides
+
+Following a consistent set of naming conventions in the development of a framework can be a major contribution to the framework’s usability. It allows the framework to be used by many developers on widely separated projects. Beyond consistency of form, names of framework elements must be easily understood and must convey the function of each element.
+
+The goal of this section is to provide a consistent set of naming conventions that results in names that make immediate sense to developers.
+
+Although adopting these naming conventions as general code development guidelines would result in more consistent naming throughout your code, you are required only to apply them to APIs that are publicly exposed (public or protected types and members, and explicitly implemented interfaces).
+
+|**COMMENTARY:** Before diving in, please keep in mind that the most important thing about naming is not to be afraid to just pick something and get moving.  Please do not waste hours trying to think of a perfect name.  It is almost always possible to come back later and change a name during the code review process.  With that said, do put a few seconds to a few minutes of thought into any names picked as they may last a while.  Last, please watch the spelling of names as misspellings have a way of lasting years in a system. |
+|--|
+
+
 # Continuous Integration
 
 # Continuous Delivery

@@ -2,7 +2,7 @@
 
 This document contains a number of software development guides that are intended to aide developers in writing software.  Most of these guides are just guidelines, and should be treated as such; but when they are generally adhered to, they can save a lot of future time and effort.  I am always up for feedback so please feel free to drop me a line.
 
-[[_TOC_]]
+
 
 # General Rules of Thumb
 
@@ -31,6 +31,10 @@ Just because you can come to work wearing a shreded shirt, and pair of jeans wit
 ## Managing Connection Strings
 
 ## Managing Application Settings
+
+# Linking your Internal Network to Azure
+
+Often organizations are migrating to azure and need to create a hybrid setup.  This section discusses how to setup the azure network infrastructure that is needed to create a hybrid network.
 
 
 

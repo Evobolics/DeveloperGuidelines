@@ -236,15 +236,54 @@ If you are writing new code targeting the .NET 2.0 runtime or greater, [do not u
 
 The costiest thing in a development shop is the programmers time; thus it very important to make sure each day each developer spends their time wisely and keep the cost of changing code in mind.  Everytime a developer has to change code there is the potential for bugs to be re-introduced to a program and the software needs to go through 
 
-# Language Specific  Guides
+# Language Specific Guides
+
+## CSharp
 
 ## VB Dot NET
 
 This Company does have VB Dot Net projects and thus a few words of wisdom are needed for anyone that is working on these projects.  First, [Option Explicit](http://vb.net-informations.com/language/vb.net_option_explicit.htm) should be turned ON; no exceptions.  Second, set [Option Strict](http://vb.net-informations.com/language/vb.net_option_strict.htm) to ON. Last, no project should have a reference to Visual Basic, as the functions have been proven to be over a thousand times slower than using their .NET counterparts.
 
+# Repository Setup
+
+There are four flavors of repositories that are common:
+
+1. Monolithic Solution Structure
+2. Systems and Combined Libraries
+3. Systems and Seperate Libraries
+4. Everything Seperate
+
+## Monolithic Solutions
+
+A monolithic solution architecture is the most often solution architecture that is seen.  It is because most companies and organizations start from a single project and or solution and the thing grows.  
+
+### Bifuricated Monolithic Solutions
+
+## Seperated Systems with Combined Libraries
+
+The next common 
+
+## Seperated Systems with Seperate Libraries
+
+Each major system is seperated in its own repository and the This architecture requires a lot of automation to be in place.  
+
+## All Projects are Seperate
+
+The last architecture that is present is one where every project has their own repository.  Period. No Exceptions.  This forces dependencies to be seperate, but 
+
+## General Repository Guidelines
+
+Do not try to combine folder names with periods to save nesting.  It makes it harder for others come along and add to the structure without having to decompress the nested folder structure.
+
 # Continuous Integration
 
 # Continuous Delivery
+
+The goal is to provide valuable continous delivery to the organization.  
+
+Without delivery, all the code that is checked in just stays checked in, is not deployed, and does the organization little.  
+
+Ideally organizations want to gain return on investment for any code written as soon as possible.
 
 ## Moving Beyond Virtual Machines
 
